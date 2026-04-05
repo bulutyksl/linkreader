@@ -1,0 +1,23 @@
+[project]
+name = "linkreader"
+version = "0.1.0"
+description = "Extract clean article text from news URLs in PDF files for corpus linguistics research"
+readme = "README.md"
+authors = [
+    { name = "bulutyksl", email = "bulutyksl@hotmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pymupdf>=1.24.0",
+    "trafilatura>=1.12.0",
+    "py3langid>=0.3.0",
+    "rich>=13.0.0",
+    "tenacity>=8.0.0",
+]
+
+[project.scripts]
+linkreader = "linkreader.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.17,<0.10.0"]
+build-backend = "uv_build"

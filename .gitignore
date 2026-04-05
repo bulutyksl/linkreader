@@ -1,0 +1,9 @@
+# PDF files
+*.pdf
+
+# Scraped article output
+output/
+
+# Python cache
+__pycache__/
+*.pyc
