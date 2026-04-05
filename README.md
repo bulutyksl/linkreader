@@ -82,12 +82,22 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 
 After installing, close and reopen your terminal.
 
-### 3. Download and set up Linkreader
+### 3. Download Linkreader
 
-Open your terminal and run these commands one by one:
+1. Go to the Linkreader project page on GitHub
+2. Click the green **"Code"** button near the top right, then click **"Download ZIP"**
+3. Find the downloaded file (usually in your **Downloads** folder) and extract it:
+   - **Mac:** Double-click the `.zip` file — it will extract automatically
+   - **Windows:** Right-click the `.zip` file and choose **"Extract All..."**
+
+This will give you a folder called `linkreader-main` (or similar).
+
+### 4. Set up Linkreader
+
+Open your terminal and navigate to the folder you just extracted. For example, if it's in your Downloads folder:
 
 ```
-cd linkreader
+cd ~/Downloads/linkreader-main
 uv sync
 ```
 
