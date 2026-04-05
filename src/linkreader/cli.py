@@ -13,7 +13,6 @@ from .extractor import extract_article
 from .fetcher import FetchError, Fetcher
 from .models import ArticleResult
 from .pdf_parser import parse_input
-from .reporter import console as report_console
 from .reporter import print_summary, write_failed_urls, write_report_json
 from .url_classifier import classify
 from .writer import write_article
@@ -86,12 +85,9 @@ def main() -> None:
                     # Resume: check if output file already exists
                     if args.resume:
                         expected_dir = output_dir / info.site / str(info.year or "unknown_year") / info.section
-                        if expected_dir.exists() and any(expected_dir.glob(f"*{info.slug}*")):
-                            results.append(ArticleResult(
-                                url_info=info, success=True,
-                                error="skipped (resume)",
-                                output_path=str(expected_dir),
-                            ))
+                        if expected_dir.exists() and any(
+                            f for f in expected_dir.iterdir() if info.slug in f.name
+                        ):
                             progress.advance(task)
                             continue
 

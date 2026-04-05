@@ -22,10 +22,10 @@ def write_article(article: ArticleResult, output_dir: Path) -> Path:
 
     # Handle collisions
     if filepath.exists():
+        base_stem = filepath.stem
         counter = 2
         while True:
-            stem = filepath.stem
-            candidate = dir_path / f"{stem}_{counter}.txt"
+            candidate = dir_path / f"{base_stem}_{counter}.txt"
             if not candidate.exists():
                 filepath = candidate
                 break
