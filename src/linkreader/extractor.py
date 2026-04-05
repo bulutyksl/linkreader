@@ -9,7 +9,7 @@ DATE_IN_URL_RE = re.compile(r"/(20[12]\d)/(\d{2})/(\d{2})/")
 
 
 def extract_article(html: str, url: str) -> dict[str, Any]:
-    text = trafilatura.extract(
+    doc = trafilatura.bare_extraction(
         html,
         url=url,
         include_comments=False,
@@ -19,18 +19,17 @@ def extract_article(html: str, url: str) -> dict[str, Any]:
         target_language="tr",
     )
 
-    doc = trafilatura.bare_extraction(html, url=url)
+    if doc is None:
+        return {"text": None, "title": None, "author": None, "date": _date_from_url(url), "sitename": None}
 
-    date = getattr(doc, "date", None)
-    if not date:
-        date = _date_from_url(url)
+    date = doc.date or _date_from_url(url)
 
     return {
-        "text": text,
-        "title": getattr(doc, "title", None),
-        "author": getattr(doc, "author", None),
+        "text": doc.text,
+        "title": doc.title,
+        "author": doc.author,
         "date": date,
-        "sitename": getattr(doc, "sitename", None),
+        "sitename": doc.sitename,
     }
 
 
