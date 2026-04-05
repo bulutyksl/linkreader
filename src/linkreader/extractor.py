@@ -5,7 +5,7 @@ from typing import Any
 
 import trafilatura
 
-DATE_IN_URL_RE = re.compile(r"/(20[12]\d)/(\d{2})/(\d{2})/")
+DATE_IN_URL_RE = re.compile(r"/(2\d{3})/(\d{2})/(\d{2})/")
 
 
 def extract_article(html: str, url: str) -> dict[str, Any]:

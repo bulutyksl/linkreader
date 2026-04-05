@@ -7,7 +7,7 @@ import fitz
 
 from .models import PdfEntry
 
-YEAR_HEADER_RE = re.compile(r"(20[12]\d)\s*[-\u2013]\s*(?:\d+\s+haber|haber yok)")
+YEAR_HEADER_RE = re.compile(r"(2\d{3})\s*[-\u2013]\s*(?:\d+\s+haber|haber yok)")
 URL_RE = re.compile(r"https?://\S+")
 
 
@@ -36,7 +36,7 @@ def parse_txt(path: str | Path) -> list[PdfEntry]:
         line = line.strip()
         if not line or line.startswith("#"):
             # Check if comment contains a year hint like "# 2021"
-            m = re.search(r"(20[12]\d)", line)
+            m = re.search(r"(2\d{3})", line)
             if m:
                 current_year = int(m.group(1))
             continue
